@@ -28,7 +28,7 @@ app.use(
     credentials: true,
   }),
 );
-
+app.set("trust proxy", 1);
 // Rate limiting
 const limiter = rateLimit({
   windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS || "900000"),
