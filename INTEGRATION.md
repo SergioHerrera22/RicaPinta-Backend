@@ -11,6 +11,13 @@ VITE_API_BASE_URL=http://localhost:4000/api
 VITE_DATA_MODE=api
 ```
 
+En Netlify usa:
+
+```env
+VITE_API_BASE_URL=https://ricapinta-backend.onrender.com/api
+VITE_DATA_MODE=api
+```
+
 ⚠️ **Importante**: El frontend NO debe enviar API keys de IA directamente. Usar proxy en backend.
 
 ## 2. Actualizar Frontend apiClient.js
@@ -142,7 +149,7 @@ Cuando publique:
 ```env
 # Backend en producción
 DATABASE_URL=postgresql://...supabase...
-CORS_ORIGINS=https://ricapinta.app,https://app.ricapinta.app
+CORS_ORIGINS=https://ricapinta.netlify.app
 ```
 
 ## 10. Troubleshooting
@@ -156,6 +163,7 @@ CORS_ORIGINS=https://ricapinta.app,https://app.ricapinta.app
 
 - Verificar CORS_ORIGINS en .env backend
 - Incluir http://localhost:5173 para desarrollo
+- En Render usar https://ricapinta.netlify.app
 
 ### "Token inválido"
 

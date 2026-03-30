@@ -34,7 +34,7 @@ OPENROUTER_MODEL=meta-llama/llama-3.3-70b-instruct:free
 AI_PROVIDER=auto
 # Opcional fallback
 GEMINI_API_KEY=<tu_clave_gemini>
-CORS_ORIGINS=http://localhost:5173
+CORS_ORIGINS=http://localhost:5173,https://ricapinta.netlify.app
 ```
 
 ### Generar JWT_SECRET seguro:
@@ -102,8 +102,14 @@ curl http://localhost:4000/api/products
 
 El frontend debe usar:
 
-- `VITE_API_BASE_URL=http://localhost:4000/api`
+- `VITE_API_BASE_URL=http://localhost:4000/api` en local
+- `VITE_API_BASE_URL=https://ricapinta-backend.onrender.com/api` en Netlify
 - `VITE_DATA_MODE=api` (para usar backend)
+
+En producción:
+
+- Render debe tener `CORS_ORIGINS=https://ricapinta.netlify.app`
+- Netlify debe tener `VITE_API_BASE_URL=https://ricapinta-backend.onrender.com/api`
 
 ## Solucionar Problemas
 

@@ -14,17 +14,31 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 4000;
+const defaultCorsOrigins = [
+  "http://localhost:5173",
+  "http://localhost:3000",
+  "http://localhost:4000",
+];
 
 // Middleware de seguridad
 app.use(helmet());
 
 // CORS
-const corsOrigins = (process.env.CORS_ORIGINS || "http://localhost:5173").split(
-  ",",
-);
+const corsOrigins = (process.env.CORS_ORIGINS || defaultCorsOrigins.join(","))
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
 app.use(
   cors({
-    origin: corsOrigins,
+    origin(origin, callback) {
+      if (!origin || corsOrigins.includes(origin)) {
+        callback(null, true);
+        return;
+      }
+
+      callback(new Error(`Origen no permitido por CORS: ${origin}`));
+    },
     credentials: true,
   }),
 );
