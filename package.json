@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "node --watch src/server.js",
     "build": "echo 'Backend is already in Node.js'",
-    "start": "node src/server.js",
+    "start": "node scripts/migrate.js && node src/server.js",
     "lint": "eslint src/",
     "migrate": "node scripts/migrate.js",
     "seed": "node scripts/seed.js"
